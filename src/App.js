@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
-function App() {
+const NewTrip = () => {
+  const [trip, setTrip] = useState({ destination: '', dates: '', activities: '' });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setTrip({ ...trip, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Save the trip to the database or state
+    console.log('Trip created:', trip);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <input type="text" name="destination" placeholder="Destination" onChange={handleChange} />
+      <input type="text" name="dates" placeholder="Dates" onChange={handleChange} />
+      <input type="text" name="activities" placeholder="Activities" onChange={handleChange} />
+      <button type="submit">Create Trip</button>
+    </form>
   );
-}
+};
 
-export default App;
+export default NewTrip;
