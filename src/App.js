@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Dashboard from "./Dashbaord";
 import Itinerary from "./Itinerary";
+import Weather from "./Weather";
+import CurrencyExchange from "./CurrencyExchange";
 
 const NewTrip = () => {
   const [trip, setTrip] = useState({
@@ -25,6 +27,8 @@ const NewTrip = () => {
       {/* Other components like Navbar, etc. */}
       <Dashboard />
       <Itinerary />
+      <Weather />
+      <CurrencyExchange />
       {/* Other components like Footer, etc. */}
     </div>
   );
