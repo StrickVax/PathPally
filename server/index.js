@@ -7,10 +7,12 @@ const port = 3001;
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect('mongodb://localhost/pathpally', {
+mongoose.connect('mongodb://localhost:27017/pathpally', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-});
+}).catch(error => console.error('Connection error:', error));
+
+
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -31,12 +33,15 @@ app.get('/', (req, res) => {
 });
 
 // CRUD endpoints
-app.get('/itinerary', (req, res) => {
-    Itinerary.find((err, itineraries) => {
-        if (err) return res.status(500).send(err);
+app.get('/itinerary', async (req, res) => {
+    try {
+        const itineraries = await Itinerary.find();
         res.status(200).json(itineraries);
-    });
+    } catch (err) {
+        res.status(500).send(err);
+    }
 });
+
 
 
 app.post('/itinerary', (req, res) => {
