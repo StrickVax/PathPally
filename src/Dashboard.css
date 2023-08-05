@@ -1,0 +1,19 @@
+.dashboard {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.upcoming-trips {
+  width: 45%;
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.weather-alerts {
+  width: 45%;
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 10px;
+}
